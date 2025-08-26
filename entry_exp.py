@@ -33,6 +33,15 @@ def log_visit(ip, user_agent, url):
         writer = csv.writer(f)
         writer.writerow([datetime.now().isoformat(), ip, user_agent, url])
 
+@app.route("/")
+def index():
+    """Home page"""
+    return """
+    <h1>Redirector</h1>
+    <p>Redirect to a random URL.</p>
+    <a href="/entry">Entry</a>
+    <p><a href="/stats">Stats</a></p>
+    """
 
 @app.route("/entry")
 def entry():
