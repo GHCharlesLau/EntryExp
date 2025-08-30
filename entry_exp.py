@@ -8,17 +8,17 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Target URLs
-# URLS = [
-#     "https://conversation-experiment.onrender.com/room/Room_1_pilot1",
-#     "https://conversation-experiment-2.onrender.com/room/Room_2",
-#     "https://conversation-experiment-3.onrender.com/room/Room_3",
-#     "https://conversation-experiment-4.onrender.com/room/Room_4",
-#     "https://conversation-experiment-5.onrender.com/room/Room_5",
-# ]
 URLS = [
-    "https://conversation-experiment.onrender.com/join/pijemiri",
-    "https://conversation-experiment-2.onrender.com/join/puropito",
+    "https://conversation-experiment.onrender.com/room/Room_1_pilot1",
+    "https://conversation-experiment-2.onrender.com/room/Room_2",
+    "https://conversation-experiment-3.onrender.com/room/Room_3",
+    "https://conversation-experiment-4.onrender.com/room/Room_4",
+    "https://conversation-experiment-5.onrender.com/room/Room_5",
 ]
+# URLS = [
+#     "https://conversation-experiment.onrender.com/join/pijemiri",
+#     "https://conversation-experiment-2.onrender.com/join/puropito",
+# ]
 
 # Count traffic for each URL
 counts = [0] * len(URLS)
