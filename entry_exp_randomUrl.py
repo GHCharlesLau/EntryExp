@@ -15,24 +15,20 @@ app = Flask(__name__)
 #     "https://conversation-experiment-4.onrender.com/room/Room_4",
 #     "https://conversation-experiment-5.onrender.com/room/Room_5",
 # ]
-URLS = [
-    "https://conversation-experiment.onrender.com/join/pijemiri",
-    "https://conversation-experiment-2.onrender.com/join/puropito",
-]
 # URLS = [
-#     "www.example.com/1",
-#     "www.example.com/2",
-#     "www.example.com/3",
-#     "www.example.com/4",
-#     "www.example.com/5",
+#     "https://conversation-experiment.onrender.com/join/pijemiri",
+#     "https://conversation-experiment-2.onrender.com/join/puropito",
 # ]
+URLS = [
+    "www.example.com/1",
+    "www.example.com/2",
+    "www.example.com/3",
+    "www.example.com/4",
+    "www.example.com/5",
+]
 
 # Count traffic for each URL
 counts = [0] * len(URLS)
-# Record the current index and count
-current_index = 0
-current_count = 0
-MAX_PER_URL = 8  # Maximum number of requests per URL in each loop
 lock = threading.Lock()
 
 # Log file
@@ -63,18 +59,16 @@ def index():
 
 @app.route("/entry")
 def entry():
-    global counts, current_count, current_index
+    global counts
     with lock:
-        # Switch to the next URL if the current one has reached the limit
-        if current_count >= MAX_PER_URL:
-            current_index = (current_index + 1) % len(URLS)
-            current_count = 0
+        # Find a URL with the least traffic
+        min_count = min(counts)
+        candidates = [i for i, c in enumerate(counts) if c == min_count]
+        chosen = random.choice(candidates)
 
-        # Upate url
-        target_url = URLS[current_index]
-        current_count += 1
-        # Update overall counts
-        counts[current_index] += 1
+        # Upate counts
+        counts[chosen] += 1
+        target_url = URLS[chosen]
 
     # Info of the user
     ip = request.headers.get("X-Forwarded-For", request.remote_addr)
