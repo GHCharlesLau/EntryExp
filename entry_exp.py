@@ -32,7 +32,7 @@ counts = [0] * len(URLS)
 # Record the current index and count
 current_index = 0
 current_count = 0
-MAX_PER_URL = 12  # Maximum number of requests per URL in each loop
+MAX_PER_URL = 24  # Maximum number of requests per URL in each loop
 lock = threading.Lock()
 
 # Log file
